@@ -1,0 +1,26 @@
+
+#include <Servo.h>
+Servo myservo; 
+int val=0;   
+void setup() {
+  Serial.begin(9600);  
+pinMode(LED_BUILTIN, OUTPUT);
+ myservo.attach(0,1000,2000,0); 
+ myservo.write(180);
+ delay(5000);
+myservo.write(0);
+delay(2000);
+myservo.write(10);
+
+}
+
+void loop() {
+  if(Serial.available())
+    {  val = Serial.parseInt(); ///if(val>=0)if(val<=180)  
+      myservo.write(val); 
+ Serial.print(val);  Serial.print("\n"); 
+    }
+  delay(15);
+
+} 
+
