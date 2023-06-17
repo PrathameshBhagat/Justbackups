@@ -1,0 +1,36 @@
+#include <Servo.h>
+ 
+
+/* 
+cod to run servo via myservo.attach(0,500,2400);  0-180 
+:----------- remove500and 2400 to get 0-45
+*/
+
+
+Servo myservo;  // create servo object to control a servo
+int potpin = 0;  // analog pin used to connect the potentiometer
+int val;    // variable to read the value from the analog pin
+void setup() {
+  Serial.begin(9600); 
+  
+  myservo.attach(0);
+  pinMode(D4,OUTPUT);
+
+    // myservo.write(180);
+  delay(5000);
+  myservo.write(0);
+  delay(2000);
+  myservo.write(10);// attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  val = Serial.parseInt();       
+    if (val!=0)
+      digitalWrite(D4,HIGH);
+    else 
+      digitalWrite(D4,LOW);
+  
+  myservo.write(10);       // sets the servo position according to the scaled value
+  delay(15);                           // waits for the servo to get there
+}
+
