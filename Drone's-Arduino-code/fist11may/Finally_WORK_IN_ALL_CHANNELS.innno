@@ -1,0 +1,97 @@
+/*
+#include <Servo.h>
+Servo myservo;
+int val=0;
+void setup() {
+Serial.begin(9600);  
+pinMode(LED_BUILTIN, OUTPUT);
+myservo.attach(0,1000,2000,0); 
+myservo.write(180);
+delay(5000);
+myservo.write(0);
+delay(2000);
+myservo.write(10);
+}
+void loop() {
+ if(Serial.available())
+    {  val = Serial.parseInt(); ///if(val>=0)if(val<=180)  
+      myservo.write(val); 
+ Serial.print(val);  Serial.print("\n"); 
+    }
+ // delay(15);
+} 
+*/  
+// ESc Control and Work
+#include <Servo.h>
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266WiFiMulti.h>
+#include <ESP8266HTTPClient.h>
+#include <WiFiClientSecureBearSSL.h>
+#include <WiFiClient.h>
+ESP8266WiFiMulti WiFiMulti;
+//WiFiClient client;
+std::unique_ptr<BearSSL::WiFiClientSecure> client(new BearSSL::WiFiClientSecure);
+Servo myservo; 
+int THROTTLE=0,YAW=0,PITCH=0,ROLL=0;  
+void setup() {  
+  myservo.attach(0,1000,2000,0); 
+  myservo.write(180);
+  delay(5000);
+  myservo.write(0);
+  delay(2000);
+  myservo.write(10);
+  delay(5000);
+  Serial.begin(9600); 
+  pinMode(LED_BUILTIN, OUTPUT);  
+  digitalWrite(LED_BUILTIN, LOW);       
+  WiFi.mode(WIFI_STA);
+  WiFiMulti.addAP("realme 9 Pro+", "111111111");
+  Serial.println("setup() done connecting to ssid");
+  digitalWrite(LED_BUILTIN, HIGH); 
+while(true)if ((WiFiMulti.run() == WL_CONNECTED)) break;  
+   client->setInsecure();
+}
+  void loop() {
+//  if ((WiFiMulti.run() == WL_CONNECTED)) { 
+    HTTPClient https;
+    /*
+    https.begin("https://prathameshbhagat.000webhostapp.com/m/m.php");
+    int c=https.GET();
+    if(c>0){String p=https.getString();Serial.print(p);}*/
+    
+    if (https.begin(*client,"https://prathameshbhagat.000webhostapp.com/m/m.php")) { 
+      https.setReuse(true);
+      int httpCode = https.GET();
+      if (httpCode > 0) {
+        Serial.printf("\n -> GET... code: %d :: ", httpCode);
+        if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
+          String payload = https.getString();
+          int l =payload.length();
+          int A[4];
+          payload.remove(l-2);
+          convert(payload,A);
+          Serial.print("PIITCH: ");Serial.print(A[0]);
+          Serial.print("ROLL: ");Serial.print(A[1]);
+          Serial.print(" THROTTLE: ");Serial.print(A[2]);
+          Serial.print(" YAW: ");Serial.print(A[3]);
+          /*if(outcome<=180&&outcome>=0)
+		      myservo.write(outcome);
+          */
+        }
+      } 
+      else {digitalWrite(LED_BUILTIN, LOW);digitalWrite(LED_BUILTIN, HIGH);Serial.printf("GET-> failed\n");}
+      https.end();}
+      else {digitalWrite(LED_BUILTIN, LOW); digitalWrite(LED_BUILTIN, HIGH);
+     Serial.printf("- >Unable to connect\n");
+    }
+ // }
+ }
+void convert(String S,int Z[]){
+  String temp="";int i=S.lastIndexOf(" ");
+  for(int a=0;a<4;a++){
+    temp=S.substring(i,S.length());
+    Z[a]=temp.toInt();S.remove(i);
+    if(a==2)i=0;else i=S.lastIndexOf(" ");
+  }
+}

@@ -1,0 +1,50 @@
+// ESc Control and Work
+  #include <Servo.h>
+  Servo myservo;  // create servo object to control a servo
+  int val;    // variable to read the value from the analog pin
+  void setup() {
+    Serial.begin(9600); 
+    pinMode(D4,OUTPUT);
+  myservo.attach(0,1000,2000); 
+    myservo.write(0);
+    delay(1000);
+    myservo.write(10);
+      delay(1000);
+        myservo.write(30);
+
+  }
+
+  void loop() {
+  }  */
+
+/* :--- Setup/Caliberation Code for esc
+
+
+#include <Servo.h>
+Servo myservo; 
+int val;   
+void setup() {
+  Serial.begin(9600); 
+  pinMode(D4,OUTPUT);
+ myservo.attach(0,1000,2000); 
+  myservo.write(180);
+  delay(5000);
+  myservo.write(0);
+  delay(2000);
+  myservo.write(10);
+}
+
+void loop() {
+  /*
+  if(Serial.available())
+    {  val = Serial.parseInt(); if(val>=1000)if(val<=2000)  
+      myservo.write(val); 
+  delay(15);
+    }
+  delay(15);}  */  
+    
+
+
+
+
+
