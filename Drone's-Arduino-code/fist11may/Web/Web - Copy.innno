@@ -1,0 +1,60 @@
+#include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
+#include <Servo.h> 
+#include "PageIndex.h"
+const char* ssid = "ESPServo";  // your SSID
+const char* password = "11111111"; //WIFI Password
+Servo servo_THROTTLE,servo_YAW,servo_PITCH,servo_ROLL; 
+int THROTTLE=0,YAW=0,PITCH=0,ROLL=0;
+ESP8266WebServer server(80); 
+void handleRoot() {
+  String s = MAIN_page; 
+  server.send(200, "text/html", s); 
+}
+
+void handleStick() {
+   String tmp;int temp;
+  if(server.arg("THROTTLE")!=""){
+      tmp =server.arg("THROTTLE"); temp=tmp.toInt();
+      THROTTLE = map(constrain(temp,-100,100),-100,100,0,180);}
+  if(server.arg("YAW")!=""){
+      tmp =server.arg("YAW"); temp=tmp.toInt();
+      YAW = map(constrain(temp,-100,100),-100,100,0,180);}
+  if(server.arg("PITCH")!=""){
+      tmp =server.arg("PITCH"); temp=tmp.toInt();
+      PITCH = map(constrain(temp,-100,100),-100,100,0,180);}
+  if(server.arg("ROLL")!=""){
+      tmp =server.arg("ROLL"); temp=tmp.toInt();
+      ROLL = map(constrain(temp,-100,100),-100,100,0,180);}
+  server.send(200, "text/plane", "");
+  if(THROTTLE>=0&&THROTTLE<=180)servo_THROTTLE.write(THROTTLE);  
+  if(YAW>=0&&YAW<=180)servo_YAW.write(YAW);
+  if(PITCH>=0&&PITCH<=180)servo_PITCH.write(PITCH);
+  if(ROLL>=0&&ROLL<=180)servo_ROLL.write(ROLL);
+ /* Serial.print("Throttle:\t");Serial.print(THROTTLE);
+  Serial.print(" Yaw:\t");Serial.print(YAW);
+  Serial.print(" Pitch:\t");Serial.print(PITCH);
+  Serial.print(" Roll:\t");Serial.println(ROLL);
+  */
+}
+void setup() {
+  Serial.begin(115200);
+  delay(500);
+  servo_THROTTLE.attach(13,1000,2000,0);
+  servo_YAW.attach(15,1000,2000,0);
+  servo_PITCH.attach(2,1000,2000,0); 
+  servo_ROLL.attach(12,1000,2000,0);
+  pinMode(D1, OUTPUT);
+  Serial.print("Configuring access point...");
+  WiFi.softAP(ssid, password);
+  IPAddress myIP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(myIP);
+  server.on("/", handleRoot);
+  server.on("/Stick", handleStick);
+  server.begin();
+  Serial.println("HTTP server started");
+
+}
+void loop() {  server.handleClient();}
