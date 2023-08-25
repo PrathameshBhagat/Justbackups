@@ -21,7 +21,7 @@ void handleStick1() {
   server.send(200, "text/plane", "");
   if(Throttle>=0&&Throttle<=180)servo_THROTTLE.write(Throttle);  
   if(Yaw>=0&&Yaw<=180)servo_YAW.write(Yaw);
-  /*  Serial.print("Throttle:\t");Serial.print(Throttle);
+  /*Serial.print("Throttle:\t");Serial.print(Throttle);
   Serial.print(" Yaw:\t");Serial.println(Yaw);*/
 }
 void handleStick2() {
@@ -31,18 +31,19 @@ void handleStick2() {
   int Roll = map(temp,-100,100,0,180);  
   server.send(200, "text/plane", "");
   if(Pitch>=0&&Pitch<=180)servo_PITCH.write(Pitch);
-  if(Roll>=0&&Roll<=180)servo_ROLL.write(Roll);/*
-  Serial.print("Pitch:\t");Serial.print(Pitch);
+  if(Roll>=0&&Roll<=180)servo_ROLL.write(Roll);
+ /*Serial.print("Pitch:\t");Serial.print(Pitch);
   Serial.print(" Roll:\t");Serial.println(Roll);*/
 
 }
 void NotC(){
-  if(Throttle>0){Throttle=Throttle-3;//Throttle>=3?(Throttle=Throttle-3):(Throttle=Throttle-1);
-  servo_THROTTLE.write(Throttle);Serial.print(Throttle);
+  if(Throttle>0){Throttle>4?(Throttle=Throttle-4):(Throttle=Throttle-1);
+  servo_THROTTLE.write(Throttle);
   servo_YAW.write(90);
   servo_PITCH.write(90); 
-  servo_ROLL.write(90);delay(1000);
-  } else if (Throttle<0) server.handleClient();
+  servo_ROLL.write(90);Serial.print(Throttle);
+  delay(1000);
+  } else if (Throttle<=0) server.handleClient();
 }
 
 
@@ -50,13 +51,13 @@ void NotC(){
 void setup() {
   Serial.begin(115200);
   delay(500);
-  servo_THROTTLE.attach(13,1000,2000,0);
-  servo_YAW.attach(15,1000,2000,0);
-  servo_PITCH.attach(2,1000,2000,0); 
-  servo_ROLL.attach(12,1000,2000,0);
+  servo_THROTTLE.attach(2,1000,2000,0);
+  servo_YAW.attach(12,1000,2000,0);
+  servo_PITCH.attach(13,1000,2000,0); 
+  servo_ROLL.attach(15,1000,2000,0);
   pinMode(D1, OUTPUT);
   Serial.print("Configuring access point...");
-  WiFi.softAP(ssid);
+  WiFi.softAP(ssid,password);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
