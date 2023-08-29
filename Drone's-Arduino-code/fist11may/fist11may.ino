@@ -29,7 +29,7 @@ void loop() {
 ESP8266WiFiMulti WiFiMulti;
 Servo servo1,servo2,servo3,servo4; 
 String payload;
-int THROTTLE=0,YAW=0,PITCH=0,ROLL=0;bool chk = false;
+int THROTTLE=0;bool chk = false;
 void setup() {
   Serial.begin(115200);
   Serial.setDebugOutput(true);
@@ -61,7 +61,7 @@ void loop() {
       } else{Serial.printf("-> GET... failed, error: %s\n", http.errorToString(httpCode).c_str());er(); }
       http.end();
     } else {Serial.println("=> Unable to connect to Server");er(); }
-    if(chk){
+  if(chk){
           int l =payload.length();
           int A[4];
           payload.remove(l-2);
@@ -79,8 +79,19 @@ void loop() {
           if(A[2]<=180&&A[2]>=0)servo3.write(A[0]);
           if(A[3]<=180&&A[3]>=0)servo4.write(A[1]);
           chk=false;
+          THROTTLE=A[2];
     }
-  }
+    else {
+          //THROTTLE=0;
+          if(THROTTLE<2)THROTTLE=0;
+          else THROTTLE>10?(THROTTLE=THROTTLE-10):(THROTTLE=THROTTLE-2);
+          servo1.write(THROTTLE);
+          THROTTLE==0?servo2.write(0):servo2.write(90);
+          servo3.write(90);
+          servo4.write(90);
+          Serial.print("\nTHROTTLE: \t");
+          Serial.print(THROTTLE);Serial.print("\n");
+    }
 }
 void er(){digitalWrite(LED_BUILTIN, HIGH); delay(1000);digitalWrite(LED_BUILTIN, LOW); }
 void convert(String S,int Z[]){
