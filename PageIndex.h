@@ -52,7 +52,7 @@ const char MAIN_page[] PROGMEM = R"=====(
         document.getElementById("joy1Y").innerHTML = throttle;
         throttle=Math.min(100,Math.max(throttle,-100));yaw=Math.min(100,Math.max(yaw,-100));
         var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "Stick1?THROTTLE="+throttle+"&YAW="+yaw, true);
+        xhttp.open("GET", "Stick1?THROTTLE="+throttle+"&YAW="+yaw,false );
         xhttp.send();
       } 
       function sendStick2(pitch,roll) {
@@ -60,7 +60,7 @@ const char MAIN_page[] PROGMEM = R"=====(
         document.getElementById("joy2Y").innerHTML = roll;
         pitch=Math.min(100,Math.max(pitch,-100));roll=Math.min(100,Math.max(roll,-100));
         var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "Stick2?PITCH="+pitch+"&ROLL="+roll, true);
+        xhttp.open("GET", "Stick2?PITCH="+pitch+"&ROLL="+roll, false);
         xhttp.send();
       } 
 
