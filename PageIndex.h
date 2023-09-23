@@ -5,6 +5,7 @@ const char MAIN_page[] PROGMEM = R"=====(
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
 *{ margin:0px; padding: 0px; user-select: none;	font-family: monospace;}
+.row{display: inline-flex;	}
 .a{ width :55px;}
 #joy1Div,#joy2Div {
 	width:200px;
