@@ -1,4 +1,11 @@
-const char MAIN_page[] PROGMEM = R"=====(
+const char SUPPORT_page[] PROGMEM = R"=====(
+<br><br><br>
+<input type="range" min="0" max="180" value="50" step="10"
+oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?pwm='+this.value,true );xhttp.send();"><br><br><br>
+<input type="range" min="0" max="255" value="50" step="10" style='accent-color:#ff9900;'
+oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?analog='+this.value,true );xhttp.send();">
+)=====";   
+  const char MAIN_page[] PROGMEM = R"=====(
 <!DOCTYPE html>
 <html>
   <head>
