@@ -11,12 +11,13 @@ oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?analog='+
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-*{ margin:0px; padding: 0px; user-select: none;	font-family: monospace;}
+*{ margin:0px; padding: 0px;color:#cc00ff; user-select: none;	font-family: monospace;}
 .row{display: inline-flex;	}
 .a{ width :55px;}
 #joy1Div,#joy2Div {
-	width:200px;
-	height:200px; 
+	--m:max(100vh,100vw);
+	width:calc(var(--m)/2.3);
+	height:calc(var(--m)/2.3); 
 	}
 #joy1Div>#joystick{
     border:1px solid #ff0000; 
@@ -29,13 +30,13 @@ oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?analog='+
   <body> 
     	<table >
         <tr > 
-          <td>
-            <div style="height:50px"></div> 
+          <td colspan=2>
+            <div style="height:25px"><button onclick="openFullscreen()">Fullscreen</button><button onclick="rotateScreen()">Rotate</button></div> 
           </td>
         </tr>
         <tr> 
           <td>
-              <div style="width:50px"></div> 
+              <div style="width:25px"></div> 
           </td>
             
             <td>
@@ -54,6 +55,20 @@ oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?analog='+
           </tr>
         </table>
 		<script type="text/javascript">
+function openFullscreen() {
+	if(document.fullscreenElement)	{
+	document.exitFullscreen();
+	document.getElementsByTagName("button")[0].innerHTML="FullScreen";}
+	else{
+	document.getElementsByTagName("body")[0].requestFullscreen();
+	document.getElementsByTagName("button")[0].innerHTML="Exit";	
+	}
+	screen.orientation.lock("landscape-primary");
+}
+function rotateScreen(){
+	if (screen.orientation.type=="landscape-primary")screen.orientation.lock("landscape-secondary");
+	else screen.orientation.lock("landscape-primary");
+}
       function sendStick1(throttle,yaw) {
         document.getElementById("joy1X").innerHTML = yaw;
         document.getElementById("joy1Y").innerHTML = throttle;
