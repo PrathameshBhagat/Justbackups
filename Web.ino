@@ -44,9 +44,9 @@ void handleDistance(){
   server.send(200, "text/plane", "");
 }
 void NotC(){
-  if(Throttle>0){Throttle>4?(Throttle=Throttle-4):(Throttle=Throttle-1);
+  if(Throttle>0){Throttle>4?(Throttle=Throttle-4):(Throttle=0);
   servo_THROTTLE.write(Throttle);
-  servo_YAW.write(90);
+  Throttle>4?servo_YAW.write(90):servo_YAW.write(180);
   servo_PITCH.write(90); 
   servo_ROLL.write(90);Serial.print(Throttle);
   delay(1500); server.handleClient();
@@ -55,7 +55,6 @@ void NotC(){
 
 void setup() {
   Serial.begin(115200);
-  Serial.setDebugOutput(true);
   servo_DROP.attach(5,500,2400,0);
   servo_THROTTLE.attach(2,1000,2000,0);
   servo_YAW.attach(12,1000,2000,0);
