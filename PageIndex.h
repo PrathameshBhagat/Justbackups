@@ -31,8 +31,8 @@ oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?analog='+
     	<table >
         <tr > 
           <td colspan=2>
-            <div style="height:25px"><button onclick="openFullscreen()">Fullscreen</button><button onclick="rotateScreen()">Rotate</button></div> 
-          </td>
+            <br class=br><br class=br>   <br class=br><div style="height:30px;">&nbsp&nbsp<button onclick="openFullscreen()">Fullscreen</button>&nbsp&nbsp&nbsp&nbsp<button onclick="rotateScreen()">Rotate</button></div> 
+            <br class=br><br class=br>   <br class=br></td>
         </tr>
         <tr> 
           <td>
@@ -55,14 +55,25 @@ oninput=" var xhttp = new XMLHttpRequest();xhttp.open('GET', 'distance?analog='+
           </tr>
         </table>
 		<script type="text/javascript">
+document.body.addEventListener("fullscreenchange",()=>{ 
+	if(!document.fullscreenElement&&document.getElementsByTagName("button")[0].innerHTML!="FullScreen"){ 
+	document.getElementsByTagName("button")[0].innerHTML="FullScreen";
+	var e=document.getElementsByClassName('br');for (var i = 0; i < e.length; i++) e[i].style.display = "block";
+}
+
+}); 
 function openFullscreen() {
+	var s="";
 	if(document.fullscreenElement)	{
 	document.exitFullscreen();
-	document.getElementsByTagName("button")[0].innerHTML="FullScreen";}
+	document.getElementsByTagName("button")[0].innerHTML="FullScreen";
+	s= "block";}
 	else{
 	document.getElementsByTagName("body")[0].requestFullscreen();
 	document.getElementsByTagName("button")[0].innerHTML="Exit";	
+	s= "none";
 	}
+	var e=document.getElementsByClassName('br');for (var i = 0; i < e.length; i++) e[i].style.display = s; 
 	screen.orientation.lock("landscape-primary");
 }
 function rotateScreen(){
