@@ -1,5 +1,5 @@
 # This repository has the code of a drone (Arduino and ESP8266)-based project 
-For recruiters, please call +91 70580316487 (In India, all calls; outside, please use WhatsApp calls only) to get a better understanding of the whole project.  
+For recruiters, please call +91 70580316487 (WhatsApp if unreachable) to get a better understanding of the whole project.  
 
 This repo has almost **no clean code** and **no comments** and it was not intended to have one.  
 So please do not expect it to be readable or testable.  
