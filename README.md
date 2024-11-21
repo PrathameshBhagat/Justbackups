@@ -20,6 +20,6 @@ https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626c
   
 # IMP
 
-This repo unfortunately **lacks** clean code and comments so it might be difficult to get used to. So please consider contacting the developer a to get an overview of the project.
+This repo unfortunately **lacks** clean code, comments and has snippets scattered in various files, making it difficult to get used to. So please consider contacting the developer a to get an overview of the project.
 
-Please call +91 7058031648.
+Please call +91 7058031648 or mail at prathameshbhagat0608@gmail.com.
