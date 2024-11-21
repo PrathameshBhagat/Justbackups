@@ -16,7 +16,7 @@ https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626c
 
 - The ***flight controller*** was an Arduino UNO R3 executing a third party C++ code provided by the YMFC-AL open source project, not getting an F.C. added savings of atleast ₹5K to ₹10K.
 
-- Later the transmitter was served by a Python server to reduce the load on the tiny ESP8266 as it used to get really hot 🔥 and the it used to perform an auto reset and execute the code from the beginning.
+- Later the transmitter was served by a Python server to reduce the load on the tiny ESP8266 as it used to get really hot 🔥 and the it used to perform an auto reset making it execute the code from the beginning.
 
 - The drone isn't very stable cause the **PID (Proportional, Integral, Derivative)** values need to be tuned and lacking an aeronautics background made it difficult to tune those values.
   
