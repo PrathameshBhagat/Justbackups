@@ -10,7 +10,7 @@ https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626c
 - The transmitter and reciver was ***programmed completely from scratch*** in JS & C++, saving ₹4K to ₹10K to make delivery of medicines and goods cost effective.
 
 
-- The ***transmitter*** was self programmed by me and was just a vanilla J.S.  page with two joysticks operated from my smart phone it self.
+- The ***transmitter*** was self programmed by me and was just a vanilla J.S. page with two joysticks operated from a smart phone it self.
 
 - The ***receiver*** was as well self programmed in C++ and executed by an ESP8266/ESP 32 board, just a web server serving the J.S. page and providing the recieved pitch, yaw, roll values to the flight controller.
 
