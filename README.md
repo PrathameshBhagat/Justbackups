@@ -1,4 +1,4 @@
-# An attempt to build an autonomous drone
+# Attempt to build an autonomous drone
 
 ## Demo
 https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626cd12-0045-4e3d-8046-53edd3de42e9
