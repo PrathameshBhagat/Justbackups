@@ -14,7 +14,7 @@ https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626c
 
 - The ***receiver*** was as well self programmed in C++ and executed by an ESP8266/ESP 32 board, just a web server serving the J.S. page and providing the recieved pitch, yaw, roll values to the flight controller.
 
-- The ***flight controller*** was an Arduino R3 executing a third party C++ code by the YMFC-AL open source project, not getting an F.C. added savings of atleast ₹5K to ₹10K.
+- The ***flight controller*** was an Arduino UNO R3 executing a third party C++ code provided by the YMFC-AL open source project, not getting an F.C. added savings of atleast ₹5K to ₹10K.
 
 - The drone isn't very stable cause the **PID (Proportional, Integral, Derivative)** values need to be tuned and lacking an aeronautics background made it difficult to tune those values.
   
