@@ -14,7 +14,7 @@ https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626c
 
 - The ***receiver*** was as well self programmed in C++ and executed by an ESP8266/ESP 32 board, just a web server, serving the J.S. page and providing the recieved pitch, yaw, roll values to the flight controller.
 
-- The ***flight controller*** was an Arduino UNO R3 executing a third party C++ code provided by the YMFC-AL open source project, not getting an F.C. from the market added savings of atleast ₹5K to ₹15K. Totalling saving between ₹9K to ₹25K.
+- The ***flight controller*** was an Arduino UNO R3 executing a third party C++ code provided by the YMFC-AL open source project. Not getting a traditional F.C. from the market added savings of atleast ₹5K to ₹15K. Totalling saving between ₹9K to ₹25K.
 
 - Later the transmitter was served by a separate Python server to reduce the load on the tiny ESP8266 as it used to get really hot 🔥 and perform an auto reset and execute the code from the beginning, (which mid flight could have caused a lot of damage).
 
