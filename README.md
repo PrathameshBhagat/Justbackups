@@ -24,4 +24,13 @@ https://github.com/PrathameshBhagat/Drone-Branches-Project/assets/90595097/4626c
 
 This repo unfortunately **lacks** clean code, comments and has snippets scattered in various files, making it difficult to get used to. So please consider contacting the developer a to get an overview of the project.
 
-Please call +91 705-803-1648 or mail at prathameshbhagat0608@gmail.com.
+
+## Contact 
+For further details contact the developer:-  
+   
+**Name:**&emsp; &emsp; Prathamesh Bhagat  
+**Phone:**&emsp; &emsp; +91 705-803-1648  
+**Email:**&emsp; &emsp; &emsp; [prathameshbhagat0608@gmail.com](mailto:prathameshbhagat0608@gmail.com)  
+**Website:**&emsp; &emsp; [https://prathameshbhagat.github.io](https://prathameshbhagat.github.io)  
+**Linkedin:**&emsp; &emsp; [https://linkedin.com/in/prathameshvivekbhagat/](https://linkedin.com/in/prathameshvivekbhagat/)    
+**What's App:**&emsp; [https://wa.me/917058031648](https://wa.me/917058031648)
